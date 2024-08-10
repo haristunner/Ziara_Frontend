@@ -303,6 +303,12 @@ nav {
   grid-template-columns: repeat(2, 1fr);
 }
 
+.my_account_grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(2, 1fr);
+}
+
 .register_btns {
   display: flex;
   align-items: center;
@@ -494,6 +500,10 @@ nav {
   }
 
   .address {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .my_account_grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }

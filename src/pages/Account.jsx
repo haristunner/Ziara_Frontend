@@ -155,7 +155,7 @@ const Account = () => {
       <Nav />
 
       <div className="login">
-        <div style={{ textAlign: "center", padding: "2rem" }}>
+        <div style={{ textAlign: "center", padding: "0.25rem 0 1rem" }}>
           <img
             src="https://www.svgrepo.com/show/508195/user.svg"
             style={{ height: "3rem" }}

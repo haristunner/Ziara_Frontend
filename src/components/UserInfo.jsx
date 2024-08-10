@@ -235,7 +235,7 @@ const UserInfo = ({ user_id = null }) => {
               >
                 <PersonIcon /> My profile
               </h4>
-              <div className="grid_col2">
+              <div className="my_account_grid">
                 <div>
                   <p className="fw_700">First Name</p>
                   <p className="light_txt">{data?.first_name}</p>
