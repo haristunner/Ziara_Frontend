@@ -7,6 +7,7 @@ const useFetch = ({ url, method, dependencies = [] }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(() => true);
     async function fetch() {
       await axios
         .request({
@@ -15,7 +16,6 @@ const useFetch = ({ url, method, dependencies = [] }) => {
           baseURL: API_BASE_URL,
         })
         .then((res) => {
-          console.log(res.data);
           setData(res?.data);
         })
         .catch((err) => {

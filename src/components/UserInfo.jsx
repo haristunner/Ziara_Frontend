@@ -7,6 +7,8 @@ import TextField from "./TextField";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Flex, Modal, notification } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
+import axios from "axios";
+import { API_BASE_URL } from "../config/api";
 
 const UserInfo = ({ user_id = null }) => {
   const { data: user, loading } = useFetch({
@@ -22,6 +24,8 @@ const UserInfo = ({ user_id = null }) => {
     state: "",
     postal_code: "",
   });
+
+  const [btnLoading, setBtnLoading] = useState(false);
 
   useEffect(() => {
     if (user?.data) {
@@ -56,6 +60,27 @@ const UserInfo = ({ user_id = null }) => {
       ...address,
       [name]: value,
     });
+  };
+
+  const addAddress = async () => {
+    setBtnLoading(() => true);
+
+    await axios
+      .post(`${API_BASE_URL}/user/address`, {
+        user_id,
+        address: address,
+      })
+      .then((res) => {
+        if (res.data.success) {
+          window.location.reload();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+      .finally(() => {
+        setBtnLoading(false);
+      });
   };
 
   return (
@@ -102,7 +127,13 @@ const UserInfo = ({ user_id = null }) => {
           />
 
           <div style={{ textAlign: "center" }}>
-            <button className="primary_btn">submit</button>
+            <button
+              className="primary_btn"
+              onClick={addAddress}
+              disabled={btnLoading}
+            >
+              submit {btnLoading ? <LoadingOutlined /> : ""}
+            </button>
           </div>
         </Flex>
       </Modal>

@@ -24,7 +24,7 @@ const Nav = () => {
         }}
         title="CART"
       >
-        <Carts />
+        <Carts cartOpen={cartOpen} />
       </Drawer>
 
       <Link className="nav_logo" to={"/"}>
