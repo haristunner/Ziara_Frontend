@@ -17,9 +17,22 @@
   height: 8rem;
 }
 
+.cart_container {
+  height: 80vh;
+  overflow: auto;
+}
+
+.cart_container::-webkit-scrollbar {
+  display: none;
+}
+
+.proceed_btn {
+  position: absolute;
+  bottom: 2vh;
+  width: calc(100% - 2rem);
+}
+
 .user_info {
-  display: flex;
-  gap: 2rem;
 }
 
 .user_aside {
@@ -51,4 +64,18 @@
   background-color: #353535;
   height: 2rem;
   width: 5px;
+}
+
+.secondary_title {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  gap: 0.5rem;
+}
+
+.card {
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }

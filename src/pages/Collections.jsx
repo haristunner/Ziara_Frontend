@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import useFetch from "../hooks/useFetch";
 import ProductsList from "../components/ProductsList";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Collections = () => {
   const { type } = useParams();
-
-  console.log(type);
 
   const { data, loading } = useFetch({
     url: `/product/get_products_by_type/${type}`,
@@ -19,7 +18,19 @@ const Collections = () => {
   return (
     <div>
       <Nav />
-      {type && data ? <ProductsList products={data?.data?.products} /> : ""}
+      {type ? (
+        loading ? (
+          <div className="flex_center" style={{ minHeight: "70dvh" }}>
+            <LoadingOutlined style={{ fontSize: "3rem" }} />
+          </div>
+        ) : data ? (
+          <ProductsList products={data?.data?.products} />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </div>
   );
 };

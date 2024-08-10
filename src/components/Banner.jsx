@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { Link } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import ProductGrid from "./ProductGrid";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const banner = [
   {
@@ -45,7 +46,7 @@ const Banner = () => {
     url: "/product/get_landing_products",
     method: "GET",
   });
- 
+
   return (
     <div>
       <>
@@ -85,13 +86,15 @@ const Banner = () => {
       </div>
 
       {loading ? (
-        ""
+        <div className="flex_center" style={{ minHeight: "30dvh" }}>
+          <LoadingOutlined style={{ fontSize: "3rem" }} />
+        </div>
       ) : (
         <>
           <div style={{ padding: "2rem" }}>
             {" "}
             <h3 className="primary_title mb_32">NEW ESSENTIALS</h3>
-            <div className="banner_collections">
+            <div className="banner_products">
               {loading
                 ? ""
                 : recent_products?.data?.recent.map((product, i) => (
@@ -103,7 +106,7 @@ const Banner = () => {
           <div style={{ padding: "2rem" }}>
             {" "}
             <h3 className="primary_title mb_32">SHIRTS</h3>
-            <div className="banner_collections">
+            <div className="banner_products">
               {loading
                 ? ""
                 : recent_products?.data?.shirts.map((product, i) => (
@@ -115,7 +118,7 @@ const Banner = () => {
           <div style={{ padding: "2rem" }}>
             {" "}
             <h3 className="primary_title mb_32">PANTS</h3>
-            <div className="banner_collections">
+            <div className="banner_products">
               {loading
                 ? ""
                 : recent_products?.data?.pants.map((product, i) => (
@@ -127,7 +130,7 @@ const Banner = () => {
           <div style={{ padding: "2rem" }}>
             {" "}
             <h3 className="primary_title mb_32">T SHIRTS</h3>
-            <div className="banner_collections">
+            <div className="banner_products">
               {loading
                 ? ""
                 : recent_products?.data?.tshirts.map((product, i) => (

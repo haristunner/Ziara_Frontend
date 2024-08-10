@@ -15,19 +15,6 @@ const Nav = () => {
 
   const [cartOpen, setCartOpen] = useState(false);
 
-  const checkout = async () => {
-    await axios
-      .post(`${API_BASE_URL}/payment/create_payment`, {
-        user_id,
-      })
-      .then((res) => {
-        console.log(res);
-
-        window.open(res?.data?.data?.url, "_self");
-      })
-      .catch((err) => {});
-  };
-
   return (
     <nav>
       <Drawer
@@ -36,17 +23,6 @@ const Nav = () => {
           setCartOpen(false);
         }}
         title="CART"
-        footer={
-          user_id ? (
-            <Flex justify="center">
-              <button className="primary_btn" onClick={checkout}>
-                Proceed
-              </button>
-            </Flex>
-          ) : (
-            ""
-          )
-        }
       >
         <Carts />
       </Drawer>
@@ -59,12 +35,12 @@ const Nav = () => {
         <Link to={"/user"}>
           <PersonIcon className="nav_icons" />
         </Link>
-        <Link to={"/"}>
+        {/* <Link to={"/"}>
           <SearchIcon className="nav_icons" />
         </Link>
         <Link to={"/wishlist"}>
           <FavoriteBorderIcon className="nav_icons" />
-        </Link>
+        </Link> */}
         <div
           onClick={() => {
             setCartOpen(true);

@@ -2,6 +2,7 @@ import Nav from "../components/Nav";
 import { useParams } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import ProductView from "../components/ProductView";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Product = () => {
   const { id } = useParams();
@@ -14,7 +15,19 @@ const Product = () => {
   return (
     <div>
       <Nav />
-      {id && data != null ? <ProductView data={data} /> : ""}
+      {id ? (
+        loading ? (
+          <div className="flex_center" style={{ minHeight: "70dvh" }}>
+            <LoadingOutlined style={{ fontSize: "3rem" }} />
+          </div>
+        ) : data != null ? (
+          <ProductView data={data} />
+        ) : (
+          ""
+        )
+      ) : (
+        ""
+      )}
     </div>
   );
 };

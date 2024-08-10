@@ -2,7 +2,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.25rem 1rem;
+  padding: 1rem;
   box-shadow: rgba(0, 0, 0, 0.04) 0px 3px 5px;
   position: sticky;
   top: 0;
@@ -57,6 +57,12 @@ nav {
   gap: 2rem;
 }
 
+.banner_products {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
+}
+
 .banner_collection {
   overflow: hidden;
   position: relative;
@@ -103,6 +109,10 @@ nav {
 
 .mb_8 {
   margin-bottom: 0.5rem;
+}
+
+.mt_16 {
+  margin-top: 1rem;
 }
 
 .product_grid {
@@ -342,12 +352,14 @@ nav {
 }
 
 .address {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
 .fw_700 {
-  font-weight: 700;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
 }
 
 .light_txt {
@@ -400,6 +412,15 @@ nav {
     padding: 1.25rem;
     width: 80%;
   }
+
+  .b_c_text h3 {
+    font-size: 1.7rem;
+    margin-top: 0.5rem;
+  }
+
+  .banner_products {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media screen and (max-width: 767px) {
@@ -443,5 +464,36 @@ nav {
   .products_list {
     padding: 1.25rem;
     width: 90%;
+  }
+
+  .icon-circle-button-right-clipped {
+    /* height: 25px;
+    width: 25px; */
+  }
+
+  .b_c_text {
+    bottom: 2rem;
+    left: 2rem;
+    color: #fff;
+  }
+
+  .b_c_text h3 {
+    font-size: 2.2rem;
+  }
+
+  .banner_collections {
+    flex-direction: column;
+  }
+
+  .banner_products {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .primary_title {
+    font-size: 1.75rem;
+  }
+
+  .address {
+    grid-template-columns: repeat(2, 1fr);
   }
 }

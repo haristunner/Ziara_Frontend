@@ -1,8 +1,11 @@
 import Nav from "../components/Nav";
-import { Empty } from "antd";
+import { Empty, Flex } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import useFetch from "../hooks/useFetch";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { API_BASE_URL } from "../config/api";
+import axios from "axios";
+import { LoadingOutlined } from "@ant-design/icons";
 
 const Carts = () => {
   const user_id = window.localStorage.getItem("user_id");
@@ -41,17 +44,50 @@ const CartsView = () => {
     method: "GET",
   });
 
+  const checkout = async () => {
+    await axios
+      .post(`${API_BASE_URL}/payment/create_payment`, {
+        user_id,
+      })
+      .then((res) => {
+        console.log(res);
+
+        window.open(res?.data?.data?.url, "_self");
+      })
+      .catch((err) => {});
+  };
+
   return (
-    <div>
-      {/* <ProductsList products={data?.data?.cart} /> */}
-      <div className="cart_products">
-        {data?.data?.cart.length
-          ? data?.data?.cart.map((item) => {
-              return <CartProduct key={item?.name} product={item} />;
-            })
-          : ""}
-      </div>
-    </div>
+    <>
+      {loading ? (
+        <div className="flex_center" style={{ minHeight: "70dvh" }}>
+          <LoadingOutlined style={{ fontSize: "3rem" }} />
+        </div>
+      ) : (
+        <div className="cart_products">
+          {data?.data?.cart.length ? (
+            <div className="cart_container">
+              {data?.data?.cart.map((item) => {
+                return <CartProduct key={item?.name} product={item} />;
+              })}
+            </div>
+          ) : (
+            <div className="flex_center" style={{ minHeight: "70dvh" }}>
+              <Empty description="Please add products to fashion!" />
+            </div>
+          )}
+          {data?.data?.cart.length ? (
+            <Flex justify="center" className="proceed_btn">
+              <button className="primary_btn" onClick={checkout}>
+                Proceed
+              </button>
+            </Flex>
+          ) : (
+            ""
+          )}
+        </div>
+      )}
+    </>
   );
 };
 

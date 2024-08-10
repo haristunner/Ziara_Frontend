@@ -22,3 +22,7 @@ button {
   cursor: pointer;
   background-color: #fff;
 }
+
+img {
+  user-select: none;
+}
